@@ -1,470 +1,687 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yash Nandwana — Software Engineer at Twilio</title>
+  <meta name="description" content="Backend engineer at Twilio, working on data infrastructure for real-time detection. Previously Software Developer at Meesho.">
+  <meta name="author" content="Yash Nandwana">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Yash Nandwana — Software Engineer at Twilio">
+  <meta property="og:description" content="Backend engineer at Twilio, working on data infrastructure for real-time detection. Previously Software Developer at Meesho.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230E0F12'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%232433FF'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #FAFAF7;
+      --ink: #0E0F12;
+      --ink-soft: #3A3D44;
+      --muted: #55585F;
+      --faint: #B9BCC6;
+      --rule-light: #DCDCD5;
+      --grid: #E4E7FB;
+      --accent: #2433FF;
+      --hi: #E4FF3A;
+      --display: 'Big Shoulders Display', 'Arial Narrow', 'Helvetica Neue', sans-serif;
+      --body: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+      --gut: clamp(20px, 6.5vw, 96px);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: var(--accent); }
+    button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
+    ::selection { background: var(--hi); color: var(--ink); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-  <title>Yash Nandwana</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+    .page { max-width: 1440px; margin-inline: auto; }
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    /* ---------- header ---------- */
+    header.masthead {
+      position: sticky; top: 0; z-index: 20;
+      background: var(--paper);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px var(--gut);
+      border-bottom: 1.5px solid var(--ink);
+      font-family: var(--mono); font-size: 13px;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .brand { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+    .brand strong { font-weight: 600; }
+    .brand .coord { color: var(--muted); }
+    .nav { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+    .nav a { min-height: 44px; display: inline-flex; align-items: center; padding: 0 12px; }
+    .nav a.cta { background: var(--ink); color: var(--paper); padding: 0 16px; }
+    .nav a.cta:hover { background: var(--accent); color: var(--paper); }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    /* ---------- hero ---------- */
+    .hero { padding: 56px var(--gut) 40px; display: flex; flex-direction: column; gap: 28px; }
+    .hero h1 {
+      font-family: var(--display); font-weight: 900;
+      font-size: clamp(72px, 13vw, 196px);
+      line-height: 0.82; letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero-grid {
+      display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: 24px; row-gap: 28px; align-items: end;
+    }
+    .lede { grid-column: span 6; font-size: clamp(17px, 1.6vw, 22px); line-height: 1.45; }
+    .lede .hi { background: var(--hi); padding: 0 4px; }
+    .lede strong { font-weight: 600; }
+    .datacard {
+      grid-column: 8 / span 5;
+      font-family: var(--mono); font-size: 13px; line-height: 1.85;
+      color: var(--ink-soft);
+      border-left: 1.5px solid var(--ink);
+      padding-left: 20px;
+    }
+    .datacard .status { color: var(--accent); font-weight: 600; }
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    /* ---------- section scaffolding ---------- */
+    .section { padding: 24px var(--gut) 80px; display: flex; flex-direction: column; gap: 24px; }
+    .fig-label {
+      display: flex; justify-content: space-between; gap: 12px;
+      align-items: baseline; flex-wrap: wrap;
+      font-family: var(--mono); font-size: 13px;
+    }
+    .fig-label b { font-weight: 600; }
+    .fig-label span.hint { color: var(--muted); }
+    .axis {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+      flex-wrap: wrap;
+      font-family: var(--mono); font-size: 12px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+    }
+    .axis .label { color: var(--accent); font-weight: 600; white-space: nowrap; }
+    .axis .label::before { content: "▪ "; }
+    .axis .note { color: var(--muted); white-space: nowrap; font-weight: 400; letter-spacing: 0.06em; }
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+    /* ---------- system map ---------- */
+    .map-grid {
+      display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: 24px; row-gap: 24px;
+    }
+    .blueprint {
+      grid-column: span 8;
+      position: relative;
+      aspect-ratio: 824 / 560;
+      border: 1.5px solid var(--ink);
+      background-color: #FFFFFF;
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 24px 24px;
+      overflow: hidden;
+    }
+    .blueprint svg.edges {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      pointer-events: none;
+    }
+    .node {
+      position: absolute; transform: translate(-50%, -50%);
+      min-height: 34px; padding: 5px 12px 5px 9px;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #FFFFFF;
+      border: 1.5px solid var(--ink);
+      font-family: var(--mono); font-size: 12px; font-weight: 600;
+      color: var(--ink); cursor: pointer;
+      transition: box-shadow .12s ease-out, background .12s ease-out;
+      white-space: nowrap;
+    }
+    .node .dot { width: 9px; height: 9px; background: var(--accent); display: inline-block; flex: none; }
+    .node[aria-pressed="true"] { background: var(--hi); box-shadow: 5px 5px 0 var(--ink); }
+    .node[aria-pressed="true"] .dot { background: var(--ink); }
+    .node:hover:not([aria-pressed="true"]) { box-shadow: 3px 3px 0 var(--ink); }
 
-  <!-- =======================================================
-  * Template Name: Personal
-  * Updated: Jan 29 2024 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    .inspector {
+      grid-column: span 4;
+      background: var(--ink); color: var(--paper);
+      border: 1.5px solid var(--ink);
+      padding: 28px;
+      display: flex; flex-direction: column; gap: 20px;
+      min-height: 0;
+    }
+    .inspector .head {
+      display: flex; justify-content: space-between; gap: 8px;
+      font-family: var(--mono); font-size: 12px; color: var(--faint);
+    }
+    .inspector h2 {
+      font-family: var(--display); font-weight: 900;
+      font-size: clamp(36px, 3.6vw, 52px); line-height: 0.95;
+      text-transform: uppercase;
+    }
+    .inspector .meta { font-family: var(--mono); font-size: 12px; color: var(--hi); margin-top: 8px; }
+    .inspector .fields {
+      display: flex; flex-direction: column; gap: 16px;
+      border-top: 1px solid var(--ink-soft); padding-top: 18px;
+    }
+    .inspector .field .k {
+      font-family: var(--mono); font-size: 11px; color: var(--faint);
+      letter-spacing: 0.06em; margin-bottom: 4px;
+    }
+    .inspector .field .v { font-size: 15px; line-height: 1.5; }
+
+    /* ---------- summary ---------- */
+    .summary-grid {
+      display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: 24px; row-gap: 24px; align-items: start;
+    }
+    .summary-lead {
+      grid-column: span 7;
+      font-family: var(--display); font-weight: 700;
+      font-size: clamp(28px, 3.6vw, 52px); line-height: 1;
+      letter-spacing: -0.01em; text-transform: uppercase;
+    }
+    .summary-lead em { font-style: normal; color: var(--accent); }
+    .summary-body {
+      grid-column: 8 / span 5;
+      font-size: 16px; line-height: 1.6; color: var(--ink-soft);
+    }
+    .summary-body p + p { margin-top: 12px; }
+    .summary-body strong { color: var(--ink); font-weight: 600; }
+
+    /* ---------- experience ---------- */
+    .roles { display: flex; flex-direction: column; }
+    .role {
+      display: grid; grid-template-columns: 180px 1fr;
+      column-gap: 24px; row-gap: 12px;
+      padding: 32px 0;
+      border-top: 1px solid var(--rule-light);
+    }
+    .role:first-child { border-top: 0; padding-top: 0; }
+    .role .when {
+      font-family: var(--mono); font-size: 12px;
+      letter-spacing: 0.06em; color: var(--muted);
+    }
+    .role .when .dates { color: var(--ink); font-weight: 600; display: block; margin-bottom: 4px; }
+    .role .body { display: flex; flex-direction: column; gap: 14px; }
+    .role .who {
+      display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+    }
+    .role .who .co {
+      font-family: var(--display); font-weight: 900;
+      font-size: clamp(32px, 3vw, 44px); line-height: 1;
+      text-transform: uppercase;
+    }
+    .role .who .title {
+      font-family: var(--mono); font-size: 12px;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+    }
+    .role ul { display: flex; flex-direction: column; gap: 8px; padding-left: 0; list-style: none; }
+    .role li {
+      position: relative; padding-left: 18px;
+      font-size: 15px; line-height: 1.55; color: var(--ink-soft);
+    }
+    .role li::before {
+      content: ""; position: absolute; left: 0; top: 0.65em;
+      width: 8px; height: 1.5px; background: var(--accent);
+    }
+    .role li strong { color: var(--ink); font-weight: 600; }
+    .role li .hi { background: var(--hi); padding: 0 4px; font-weight: 600; color: var(--ink); }
+    .tags-line {
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em;
+      color: var(--muted); text-transform: uppercase;
+    }
+
+    /* ---------- stack ---------- */
+    .stack-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 32px;
+    }
+    .stack-col .k {
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px;
+    }
+    .stack-col .v {
+      font-family: var(--mono); font-size: 14px;
+      line-height: 1.75; color: var(--ink);
+    }
+
+    /* ---------- record ---------- */
+    .record { display: flex; flex-direction: column; }
+    .record .row {
+      display: grid; grid-template-columns: 120px 1fr;
+      column-gap: 24px; row-gap: 8px;
+      padding: 18px 0;
+      border-top: 1px solid var(--rule-light);
+      align-items: baseline;
+    }
+    .record .row:first-child { border-top: 0; padding-top: 0; }
+    .record .yr {
+      font-family: var(--mono); font-size: 13px; font-weight: 600;
+      letter-spacing: 0.06em; color: var(--accent);
+    }
+    .record .what { font-size: 16px; line-height: 1.5; }
+    .record .what strong { font-weight: 600; }
+
+    /* ---------- contact ---------- */
+    footer.contact {
+      background: var(--hi); color: var(--ink);
+      padding: 80px var(--gut) 40px;
+      display: flex; flex-direction: column; gap: 48px;
+      border-top: 1.5px solid var(--ink);
+    }
+    .contact .top { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+    .contact h2 {
+      font-family: var(--display); font-weight: 900;
+      font-size: clamp(64px, 10vw, 150px); line-height: 0.82;
+      text-transform: uppercase;
+    }
+    .contact .email {
+      font-family: var(--mono); font-weight: 600;
+      font-size: clamp(16px, 1.6vw, 20px);
+      text-underline-offset: 6px; text-decoration: underline;
+      min-height: 48px; display: inline-flex; align-items: center;
+      word-break: break-all;
+    }
+    .contact .email:hover { color: var(--ink); text-decoration-color: var(--accent); }
+    .contact .bottom {
+      display: flex; justify-content: space-between; gap: 24px;
+      border-top: 1.5px solid var(--ink); padding-top: 20px;
+      font-family: var(--mono); font-size: 13px;
+      flex-wrap: wrap;
+    }
+    .contact .bottom .links { display: flex; gap: 32px; flex-wrap: wrap; }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 900px) {
+      .lede, .datacard, .summary-lead, .summary-body { grid-column: 1 / -1; }
+      .datacard { border-left: 0; border-top: 1.5px solid var(--ink); padding: 20px 0 0; }
+      .blueprint, .inspector { grid-column: 1 / -1; }
+      .role { grid-template-columns: 1fr; }
+      .role .when { order: -1; }
+      .record .row { grid-template-columns: 80px 1fr; }
+    }
+    @media (max-width: 600px) {
+      .brand .coord { display: none; }
+      .nav a { padding: 0 8px; }
+      .hero { padding: 32px var(--gut) 24px; gap: 20px; }
+      .section { padding: 16px var(--gut) 56px; }
+      footer.contact { padding: 56px var(--gut) 32px; gap: 32px; }
+      .inspector { padding: 22px; }
+      .node { font-size: 10px; padding: 4px 9px 4px 7px; }
+      .node .dot { width: 7px; height: 7px; }
+      .role { padding: 24px 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
 </head>
-
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header">
-    <div class="container">
+<a class="skip" href="#top" style="position:absolute;left:-9999px">Skip to content</a>
 
-      <h1><a href="index.html">Yash Nandwana</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> -->
-      <h2>Hi 👋, I'm a <span>Developer</span> from India, <br><br>Currently working as a Software Developer in Meesho.</h2>
+<div class="page">
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link active" href="#header">Home</a></li>
-          <li><a class="nav-link" href="#about">About</a></li>
-          <li><a class="nav-link" href="#resume">Resume</a></li>
-          <li><a class="nav-link" href="#portfolio">Projects</a></li>
-          <li><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-      <div class="social-links">
-        <a href="https://twitter.com/tripodkappa" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="https://www.linkedin.com/in/nandwana/" class="linkedin"><i class="bi bi-linkedin"></i></a>
-        <a href="https://github.com/YashNandwana" class="github"><i class="bi bi-github"></i></a>
-      </div>
-
+  <header class="masthead">
+    <div class="brand">
+      <a href="#top"><strong>~/yash</strong></a>
+      <span class="coord">lat 12.97° N · lon 77.59° E</span>
     </div>
-  </header><!-- End Header -->
+    <nav class="nav" aria-label="Primary">
+      <a href="#map">[map]</a>
+      <a href="#work">[work]</a>
+      <a href="#stack">[stack]</a>
+      <a href="#record">[record]</a>
+      <a href="#contact" class="cta">contact →</a>
+    </nav>
+  </header>
 
-  <!-- ======= About Section ======= -->
-  <section id="about" class="about">
-
-    <!-- ======= About Me ======= -->
-    <div class="about-me container">
-
-      <div class="section-title">
-        <h2>About</h2>
-        <p>More about me...</p>
+  <section class="hero" id="top">
+    <h1>Yash<br>Nandwana<em>.</em></h1>
+    <div class="hero-grid">
+      <p class="lede">
+        Backend engineer at <strong>Twilio</strong>, on a real-time detection system — services, design, and the infra under them. Where the
+        <span class="hi">latency budget is the design</span>: Kubernetes, Kafka, Spice.ai, Rust.
+      </p>
+      <div class="datacard">
+        <div>role ........ Software Engineer @ Twilio</div>
+        <div>prev ........ Software Developer @ Meesho</div>
+        <div>based ....... Bengaluru, India</div>
+        <div>status ...... <span class="status">● open to interesting problems</span></div>
       </div>
-
-      <div class="row">
-        <div class="col-lg-4" data-aos="fade-right">
-          <img src="assets/img/me.jpg" class="img-fluid" alt="">
-        </div>
-        <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-          <h3>Software Developer</h3>
-          <p class="fst-italic">
-            I'm based out of India, currently working as a Backend Developer at a startup. I have a passion for learning and sharing my knowledge with others as publicly as possible.
-          </p>
-          <div class="row">
-            <div class="col-lg-6">
-              <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Date of Birth:</strong> <span>27 Aug 2001</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Bangalore, India</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>yashneelam975@gmail.com</span></li>
-              </ul>
-            </div>
-            <div class="col-lg-6">
-              <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>22</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>B.E. Computer Science & Engineering</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
-              </ul>
-            </div>
-          </div>
-          <p>
-            I am currently working as a Software Developer at Meesho where I worked on multiple services on features like RBAC, Rate-limiting, package for performing CRUD operations over Zookeeper nodes, Designed and implemented features like automated deployment workflows, promotion-based CI/CD pipelines. Previously, I worked at at Anuta Networks as Software Engineer Intern, I worked on query optimization, refining user query handling with Python for the Atom Virtual Assistant (AVA). I also worked as Problem-Setter Lead at Codebattle, a platform presenting a collaborative coding environment.
-          </p>
-        </div>
-      </div>
-
-    </div><!-- End About Me -->
-
-    <!-- ======= Counts ======= -->
-    <!-- End Counts -->
-
-    <!-- ======= Skills  ======= -->
-    <div class="skills container">
-
-      <div class="section-title">
-        <h2>Skills</h2>
-      </div>
-
-      <div class="row skills-content">
-
-        <div class="col-lg-6">
-          <h3 style="color: #18d26e;">Languages</h3>
-          <div class="progress">
-            <span class="skill">Python<i class="val">Advanced</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-          <div class="progress">
-            <span class="skill">Golang<i class="val">Advanced</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-          
-          <div class="progress">
-            <span class="skill">C/C++ <i class="val">Advanced</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-          <div class="progress">
-            <span class="skill">Java <i class="val">Intermediate</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="col-lg-6">
-          <h3 style="color: #18d26e;">Tools & Frameworks</h3>
-          <div class="progress">
-            <span class="skill">Springboot <i class="val">Intermediate</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-          <div class="progress">
-            <span class="skill">Django <i class="val">Intermediate</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-          <div class="progress">
-            <span class="skill">Docker <i class="val">Beginner</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-          <div class="progress">
-            <span class="skill">Kubernetes<i class="val">Beginner</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-          <div class="progress">
-            <span class="skill">MongoDB <i class="val">Intermediate</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-          <div class="progress">
-            <span class="skill">MySql <i class="val">Intermediate</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-          <div class="progress">
-            <span class="skill">Git & Github <i class="val">Advanced</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div><!-- End Skills -->
-
-    <!-- ======= Interests ======= -->
-    <div class="interests container">
-
-      <div class="section-title">
-        <h2>Achievements</h2>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-3 col-md-4">
-          <div class="icon-box">
-            <i class="ri-store-line" style="color: #ffbb2c;"></i>
-            <h3>ACM-ICPC Regionalist</h3> 
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-          <div class="icon-box">
-            <i class="ri-bar-chart-box-line" style="color: #5578ff;"></i>
-            <h3>Nokia Collegiate Wilderness: Top 10</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-          <div class="icon-box">
-            <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
-            <h3>Google Kickstart Rank: 903, AIR 450</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4 mt-lg-0">
-          <div class="icon-box">
-            <i class="ri-paint-brush-line" style="color: #e361ff;"></i>
-            <h3>Leetcode: Top 2% Globally</h3>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- End Interests -->
-
-    <!-- ======= Testimonials ======= -->
-    
-
-  </section><!-- End About Section -->
-
-  <!-- ======= Resume Section ======= -->
-  <section id="resume" class="resume">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Resume</h2>
-        <p>Resume Summary</p><a href="https://drive.google.com/file/d/1tXCkhgxfe35q2BVIAQFlhA-RIMXl6qAo/view?usp=drive_link" style="color: #18d26e; text-decoration: underline;">view full resume</a>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-6">
-          <h3 class="resume-title">Education</h3>
-          <div class="resume-item">
-            <h4>B.E. Computer Science & Engineering</h4>
-            <h5>2020 - 2024</h5>
-            <p><em>Dayananda Sagar College of Engieering, Bengaluru, India</em></p>
-            <p>GPA: 8.19</p>
-          </div>
-          <div class="resume-item">
-            <h4>Class XII</h4>
-            <p><em>Global Public School, Kota, India</em></p>
-            <p>80.80%</p>
-          </div>
-          <h3 class="resume-title">Skill-Sumary</h3>
-          <div class="resume-item pb-0">
-            <h4>Languages</h4>
-            <ul>
-              <li>Python, Golang, C/C++, Java</li>
-            </ul>
-            <h4>Tools & Frameworks</h4>
-            <ul>
-              <li>Django, Springboot, Docker, Kubernetes, Git and Github, MySQL, MongoDB</li>
-            </ul>
-            <h4>Technical Courses</h4>
-            <ul>
-              <li>Data Structures and Algorithms, Competitive Programming, Database Management System, Backend
-                Development</li>
-            </ul>
-          </div>
-
-        </div>
-        <div class="col-lg-6">
-          <h3 class="resume-title">Professional Experience</h3>
-          <div class="resume-item">
-            <h4>Software Development Engineer</h4>
-            <h5>March 2024 - Present</h5>
-            <p><em>Meesho, Bangalore</em></p>
-            <p>
-            <ul>
-              <li> Contributed to various application services for streamlining infrastructure processes, developing features such as
-                automated deployment of services, pod orchestration for Kubernetes clusters, RBAC, Rate-limiting, package
-                for performing CRUD operations over Zookeeper nodes, and mitigating security vulnerabilities like SSRF</li>
-              <li>Designed and implemented features like automated deployment workflows, promotion-based CI/CD pipelines
-                (e.g., production to pre-production to staging to feature environments), and a high-performance configuration
-                fetching system handling over 1000 RPS</li>
-              <li>Worked with central/infra teams on tasks such as building & optimizing CI/CD pipelines, driving cost optimization
-                efforts (e.g., improving service-to-service DNS resolution saving $480K annually), and working on DR strategies</li>
-            </ul>
-            </p>
-          </div>
-          <div class="resume-item">
-            <h4>Software Engineer</h4>
-            <h5>Oct 2023 - March 2024</h5>
-            <p><em>Anuta Networks, Remote</em></p>
-            <p>
-            <ul>
-              <li>Query Optimization: Refined user query handling and processing for AVA (Atom Virtual Assistant), significantly
-                improving the delivery of precise documentation and facilitating user navigation through a pathway feature using
-                Python</li>
-              <li>Groovy Scripts Generation: Implemented functionality for creating and customizing Groovy scripts for specific
-                components when creating workflows in ATOM (A tool leveraging various technologies to enhance the networking
-                orchestration process) using Java</li>
-              <li>Workflow Enhancement: Enhanced the workflow creation process by implementing the capability to generate
-                documentation through Co-Pilot in ATOM using Java and Spring boot</li>
-            </ul>
-            </p>
-          </div>
-        </div>
-      </div>
-
     </div>
-  </section><!-- End Resume Section -->
+  </section>
 
-  
+  <section class="section" id="map" aria-label="Domain map">
+    <div class="fig-label">
+      <b>fig. 01 — the domains I work in</b>
+      <span class="hint">select a node to inspect it</span>
+    </div>
+    <div class="map-grid">
+      <div class="blueprint" id="blueprint">
+        <svg class="edges" viewBox="0 0 824 560" preserveAspectRatio="none" aria-hidden="true">
 
-  <!-- ======= Portfolio Section ======= -->
-  <section id="portfolio" class="portfolio">
-    <div class="container">
+          <!-- p99 · RPS bracket over Data & Serving -->
+          <g stroke="#2433FF" stroke-width="1" fill="none">
+            <line x1="316" y1="52" x2="508" y2="52"/>
+            <line x1="316" y1="46" x2="316" y2="58"/>
+            <line x1="508" y1="46" x2="508" y2="58"/>
+            <line x1="412" y1="84" x2="412" y2="58"/>
+          </g>
 
-      <div class="section-title">
-        <h2>Projects</h2>
-        <p>My Works</p>
+          <!-- $ saved bracket over Cluster Ops -->
+          <g stroke="#2433FF" stroke-width="1" fill="none">
+            <line x1="484" y1="415" x2="624" y2="415"/>
+            <line x1="484" y1="409" x2="484" y2="421"/>
+            <line x1="624" y1="409" x2="624" y2="421"/>
+            <line x1="554" y1="444" x2="554" y2="421"/>
+          </g>
+
+          <!-- eCHO feature bracket over Mesh & Routing -->
+          <g stroke="#2433FF" stroke-width="1" fill="none">
+            <line x1="200" y1="415" x2="340" y2="415"/>
+            <line x1="200" y1="409" x2="200" y2="421"/>
+            <line x1="340" y1="409" x2="340" y2="421"/>
+            <line x1="270" y1="444" x2="270" y2="421"/>
+          </g>
+
+          <!-- primary edges -->
+          <g stroke="#0E0F12" stroke-width="1.25" fill="none">
+            <line x1="412" y1="100" x2="180" y2="260"/>
+            <line x1="412" y1="100" x2="644" y2="260"/>
+            <line x1="180" y1="260" x2="270" y2="460"/>
+            <line x1="644" y1="260" x2="554" y2="460"/>
+          </g>
+
+          <!-- cross / lateral relationships -->
+          <g stroke="#0E0F12" stroke-width="1" fill="none">
+            <line x1="180" y1="260" x2="644" y2="260" stroke-dasharray="5 5"/>
+            <line x1="270" y1="460" x2="554" y2="460" stroke-dasharray="5 5"/>
+            <line x1="180" y1="260" x2="554" y2="460" stroke-dasharray="2 6"/>
+            <line x1="644" y1="260" x2="270" y2="460" stroke-dasharray="2 6"/>
+          </g>
+
+          <!-- annotations -->
+          <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#55585F">
+            <text x="330" y="44" fill="#2433FF">p99 &lt; 10 ms · 100k+ RPS</text>
+            <text x="490" y="407" fill="#2433FF">$450K/yr saved</text>
+            <text x="204" y="407" fill="#2433FF">featured in eCHO</text>
+            <text x="60"  y="298"> kafka · opensearch</text>
+            <text x="640" y="298">grpc · temporal</text>
+            <text x="148" y="498">envoy · contour · qubit</text>
+            <text x="444" y="498">k8s · keda · terraform</text>
+            <text x="360" y="152">java · spice.ai </text>
+            <text x="16"  y="544">x: domains · edges: shared substrate</text>
+          </g>
+        </svg>
+
+        <button class="node" data-id="data"    aria-pressed="true"  style="left:50.00%;top:17.86%"><span class="dot"></span>Data &amp; Serving</button>
+        <button class="node" data-id="observ"  aria-pressed="false" style="left:21.84%;top:46.43%"><span class="dot"></span>Observability</button>
+        <button class="node" data-id="plat"    aria-pressed="false" style="left:78.16%;top:46.43%"><span class="dot"></span>Platform APIs</button>
+        <button class="node" data-id="mesh"    aria-pressed="false" style="left:32.77%;top:82.14%"><span class="dot"></span>Mesh &amp; Routing</button>
+        <button class="node" data-id="cluster" aria-pressed="false" style="left:67.23%;top:82.14%"><span class="dot"></span>Cluster Ops</button>
       </div>
+      <aside class="inspector" aria-live="polite">
+        <div class="head"><span>INSPECTOR</span><span>node/<span data-inspect="id">data</span></span></div>
+        <div>
+          <h2 data-inspect="title">Data &amp; Serving</h2>
+          <div class="meta" data-inspect="meta">low-latency lookup · streaming · storage</div>
+        </div>
+        <div class="fields" data-inspect="fields"></div>
+      </aside>
+    </div>
+  </section>
 
-      <div class="row">
-        <div class="col-lg-12 d-flex justify-content-center">
-          <ul id="portfolio-flters">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">Web</li>
-            <li data-filter=".filter-card">Backend</li>
+  <section class="section" id="summary" aria-label="Summary">
+    <div class="axis">
+      <span class="label">summary</span>
+      <span class="note">the short version</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-lead">
+        Systems where the <em>constraints</em> do most of the design.
+      </div>
+      <div class="summary-body">
+        <p>
+          I'm a backend engineer at <strong>Twilio</strong>, on a real-time detection system in the
+          carrier-messaging domain — writing services, designing the systems around them, and
+          building the infra they run on. Before Twilio I was a Software Developer at
+          <strong>Meesho</strong>, where I built service topology, core platform primitives, and
+          cluster-cost work.
+        </p>
+        <p>
+          I like the parts of software where throughput, latency budgets, backpressure and cost
+          do most of the design — and where the answer is usually to change the substrate,
+          not the code path.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work" aria-label="Experience">
+    <div class="axis">
+      <span class="label">experience</span>
+      <span class="note">where I've worked</span>
+    </div>
+    <div class="roles">
+
+      <article class="role">
+        <div class="when">
+          <span class="dates">Oct 2025 — Present</span>
+          Remote
+        </div>
+        <div class="body">
+          <div class="who">
+            <span class="co">Twilio</span>
+            <span class="title">Software Engineer</span>
+          </div>
+          <ul>
+            <li>Own the low-latency data lookup layer behind a real-time detection system at <span class="hi">200k+ RPS</span> with <strong>sub-millisecond p99</strong>.</li>
+            <li>Build ingestion pipelines that surface external carrier signal into internal query and observability.</li>
+            <li>Built ML tooling from scratch — training environment, dataset pipeline, audit — to prove the case for in-house detection.</li>
+            <li>Led the platform migration from EC2 to Kubernetes: cluster + deployment infra, dashboards, alerting, load tests, autoscaling.</li>
           </ul>
-        </div>
-      </div>
-
-      <div class="row portfolio-container">
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Codesync</h4>
-              <p>Web</p>
-              <div class="portfolio-links">
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Project Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
+          <div class="tags-line">
+            Java · Python · Dropwizard · Kubernetes · Istio · Argo Rollouts · AWS · Kafka · Terraform · Datadog · Spice.ai · Buildkite
           </div>
         </div>
+      </article>
 
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>ResumeTree</h4>
-              <p>Backend</p>
-              <div class="portfolio-links">
-                <a href="portfolio-details2.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Project Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
+      <article class="role">
+        <div class="when">
+          <span class="dates">Mar 2024 — Oct 2025</span>
+          Bengaluru, India
+        </div>
+        <div class="body">
+          <div class="who">
+            <span class="co">Meesho</span>
+            <span class="title">SDE I · platform</span>
+          </div>
+          <ul>
+            <li>Architected a service topology correlation engine used across A/B validation and incident root-cause analysis.</li>
+            <li>Built centralized platform primitives: access control, approval workflows, distributed rate limiting, and a config distribution engine serving <span class="hi">5k+ RPS</span>.</li>
+            <li>Owned cluster autoscaling and infra cost work — <span class="hi">cut annual ALB cost by $450K</span>.</li>
+            <li>Maintained a custom fork of the ingress controller with zone-aware Envoy routing.</li>
+          </ul>
+          <div class="tags-line">
+            Go · Java · Python · Spring Boot · gRPC · Temporal · MySQL · Redis · Kubernetes · Jenkins · GCP
           </div>
         </div>
+      </article>
 
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Stock Explorer</h4>
-              <p>Web</p>
-              <div class="portfolio-links">
-                <a href="portfolio-details3.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Project Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
+      <article class="role">
+        <div class="when">
+          <span class="dates">Oct 2023 — Mar 2024</span>
+          Remote
+        </div>
+        <div class="body">
+          <div class="who">
+            <span class="co">Anuta Networks</span>
+            <span class="title">SWE intern</span>
+          </div>
+          <ul>
+            <li>Extended a network orchestration platform: shipped a Groovy-scripting extension for custom workflow components and an AI-driven documentation generator; improved query precision for documentation retrieval.</li>
+          </ul>
+          <div class="tags-line">
+            Java · Python · Spring Boot
           </div>
         </div>
-
-        
-      </div>
+      </article>
 
     </div>
-  </section><!-- End Portfolio Section -->
+  </section>
 
-  <!-- ======= Contact Section ======= -->
-  <section id="contact" class="contact">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Contact</h2>
-        <p>Contact Me</p>
+  <section class="section" id="stack" aria-label="Tech stack">
+    <div class="axis">
+      <span class="label">stack</span>
+      <span class="note">what I reach for</span>
+    </div>
+    <div class="stack-grid">
+      <div class="stack-col">
+        <div class="k">languages</div>
+        <div class="v">Java · Python · Go · Rust</div>
       </div>
-
-      <div class="row mt-2">
-
-        <div class="col-md-6 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-map"></i>
-            <h3>My Address</h3>
-            <p>Bangalore, India</p>
-          </div>
-        </div>
-
-        <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-share-alt"></i>
-            <h3>Social Profiles</h3>
-            <div class="social-links">
-              <a href="https://twitter.com/tripodkappa" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="https://www.linkedin.com/in/nandwana/" class="linkedin"><i class="bi bi-linkedin"></i></a>
-              <a href="https://github.com/YashNandwana" class="github"><i class="bi bi-github"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 mt-4 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-envelope"></i>
-            <h3>Email Me</h3>
-            <p>yashneelam975@gmail.com</p>
-          </div>
-        </div>
-        <div class="col-md-6 mt-4 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-phone-call"></i>
-            <h3>Call Me</h3>
-            <p>+91 xxxx xxxxx xx</p>
-          </div>
-        </div>
+      <div class="stack-col">
+        <div class="k">infra &amp; observability</div>
+        <div class="v">Kubernetes · Istio · Envoy · Argo Rollouts · Terraform · Datadog · KEDA · CoreDNS</div>
+      </div>
+      <div class="stack-col">
+        <div class="k">cloud &amp; data</div>
+        <div class="v">AWS · GCP · Kafka · MySQL · MongoDB · Redis · Spice.ai</div>
+      </div>
+      <div class="stack-col">
+        <div class="k">frameworks &amp; tools</div>
+        <div class="v">Dropwizard · Spring · gRPC · Temporal · Docker · Git · Buildkite · Jenkins</div>
       </div>
     </div>
-  </section><!-- End Contact Section -->
+  </section>
 
-  <div class="credits">
-    <!-- All the links in the footer should remain intact. -->
-    <!-- You can delete the links only if you purchased the pro version. -->
-    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/personal-free-resume-bootstrap-template/ -->
-  </div>
+  <section class="section" id="record" aria-label="Achievements">
+    <div class="axis">
+      <span class="label">record</span>
+      <span class="note">outside work</span>
+    </div>
+    <div class="record">
+      <div class="row">
+        <span class="yr">2024</span>
+        <span class="what">Featured in the <strong>eBPF eCHO</strong> biweekly newsletter for <strong>Qubit</strong>.</span>
+      </div>
+      <div class="row">
+        <span class="yr">2022</span>
+        <span class="what"><strong>ACM-ICPC</strong> Mathura Regionals — team rank 88 of 1,000+.</span>
+      </div>
+      <div class="row">
+        <span class="yr">2022</span>
+        <span class="what">Top 10, <strong>Nokia Collegiate Wilderness</strong> Coding.</span>
+      </div>
+      <div class="row">
+        <span class="yr">2022</span>
+        <span class="what">India rank 480, <strong>Google Kickstart</strong>.</span>
+      </div>
+    </div>
+  </section>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <footer class="contact" id="contact">
+    <div class="top">
+      <h2>Let's talk<br>systems.</h2>
+      <a class="email" href="mailto:yashneelam975@gmail.com">yashneelam975@gmail.com →</a>
+    </div>
+    <div class="bottom">
+      <div class="links">
+        <a href="https://github.com/YashNandwana" rel="noopener">github</a>
+        <a href="https://www.linkedin.com/in/nandwana" rel="noopener">linkedin</a>
+        <a href="https://x.com/tripodkappa" rel="noopener">x/@tripodkappa</a>
+      </div>
+      <span>exit 0</span>
+    </div>
+  </footer>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+</div>
+
+<script>
+(() => {
+  const DATA = {
+    data: {
+      title: "Data & Serving",
+      meta: "low-latency lookup · streaming · storage",
+      fields: [
+        { k: "SCOPE",   v: "Feature lookup and data serving under a real-time latency budget; streaming ingestion; indexing external signal for internal query." },
+        { k: "STACK",   v: "Java · Python · Spice.ai · Kafka · OpenSearch · SageMaker." },
+        { k: "METRICS", v: "200k+ RPS · sub-millisecond p99 · 5k+ RPS on shared config distribution." }
+      ]
+    },
+    observ: {
+      title: "Observability",
+      meta: "topology · dependency graphs · service maps",
+      fields: [
+        { k: "SCOPE",   v: "Turning service-mesh and kernel signal into queryable dependency graphs for A/B validation, incident root-cause, and production topology." },
+        { k: "STACK",   v: "Go · MySQL · eBPF · Kubernetes · Envoy · ZooKeeper." },
+        { k: "WORK",    v: "Correlation engines that unify multiple substrates into one graph." }
+      ]
+    },
+    plat: {
+      title: "Platform APIs",
+      meta: "primitives every service uses",
+      fields: [
+        { k: "SCOPE",   v: "Access control, approval workflows, distributed rate limiting, and config distribution — the shared layer under application teams." },
+        { k: "STACK",   v: "Go · Spring Boot · gRPC · Temporal · Redis." },
+        { k: "WHY",     v: "The layer that stops every team from re-solving the same problem." }
+      ]
+    },
+    mesh: {
+      title: "Mesh & Routing",
+      meta: "service-to-service · ingress · fabric",
+      fields: [
+        { k: "SCOPE",   v: "Service-to-service traffic — ingress control, zone-aware routing, custom forks of the ingress controller." },
+        { k: "SIDE",    v: "Qubit — an eBPF-based Kubernetes dependency mapper that builds service graphs from real kernel traffic." },
+        { k: "STACK",   v: "Go · Envoy · Contour · Istio · Kubernetes · eBPF." },
+        { k: "OUTCOME", v: "Featured in the eBPF eCHO biweekly newsletter for Qubit." }
+      ]
+    },
+    cluster: {
+      title: "Cluster Ops",
+      meta: "orchestration · autoscaling · cost",
+      fields: [
+        { k: "SCOPE",   v: "Cluster autoscaling, platform migrations, and infra cost work." },
+        { k: "STACK",   v: "Kubernetes · KEDA · CoreDNS · Argo Rollouts · Terraform · Datadog." },
+        { k: "SAVED",   v: "$450K/yr on ALB after a substrate change; consistent deploys after a full EC2 → K8s migration." }
+      ]
+    }
+  };
+
+  const $ = (sel, root=document) => root.querySelector(sel);
+  const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+  const render = (id) => {
+    const d = DATA[id]; if (!d) return;
+    $('[data-inspect="id"]').textContent = id;
+    $('[data-inspect="title"]').textContent = d.title;
+    $('[data-inspect="meta"]').textContent = d.meta;
+    const fields = $('[data-inspect="fields"]');
+    fields.innerHTML = '';
+    d.fields.forEach(f => {
+      const wrap = document.createElement('div'); wrap.className = 'field';
+      const k = document.createElement('div'); k.className = 'k'; k.textContent = f.k;
+      const v = document.createElement('div'); v.className = 'v'; v.textContent = f.v;
+      wrap.appendChild(k); wrap.appendChild(v); fields.appendChild(wrap);
+    });
+    $$('.node').forEach(n => n.setAttribute('aria-pressed', n.dataset.id === id ? 'true' : 'false'));
+  };
+
+  $$('.node').forEach(n => n.addEventListener('click', () => render(n.dataset.id)));
+  render('data');
+})();
+</script>
 
 </body>
-
 </html>
